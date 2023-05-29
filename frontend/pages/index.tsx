@@ -5,9 +5,18 @@ import { addRecipientToQueue, useCount, useQueue } from "../api/counter";
 import styles from "../styles/Home.module.css";
 import { useForm } from "@mantine/form";
 import { TextInput, Button, Group, Box, Input } from "@mantine/core";
-import { randomId } from "@mantine/hooks";
+import { encryptStringWithRsaPublicKey } from "../utils/crypto";
 
-const Home: NextPage = () => {
+export async function getStaticProps() {
+  return { props: { key1: process.env.KEY1, key2: process.env.KEY2 } };
+}
+
+interface Props {
+  key1: string;
+  key2: string;
+}
+
+const Home: NextPage<Props> = (props) => {
   const { count, error: error1, increase } = useCount();
   const {
     count: callerRecipient,
@@ -40,17 +49,23 @@ const Home: NextPage = () => {
         <Box maw={320} mx="auto">
           <TextInput
             label="Secret wallet"
+            size={"xl"}
             placeholder="Name"
             onChange={(e) => {
               form.setValues({
-                encryptedSecretWallet: e.target.value,
                 secretWallet: e.target.value,
+                encryptedSecretWallet: encryptStringWithRsaPublicKey(
+                  e.target.value,
+                  props.key1,
+                  props.key2
+                ),
               });
             }}
             value={form.values.secretWallet}
           />
           <TextInput
             disabled={true}
+            size={"xl"}
             label="Encrypted secret wallet"
             {...form.getInputProps("encryptedSecretWallet")}
             placeholder="0x"
@@ -58,6 +73,7 @@ const Home: NextPage = () => {
           <TextInput
             mt="md"
             label="Recipient"
+            size={"xl"}
             placeholder="Recipient"
             {...form.getInputProps("recipient")}
           />

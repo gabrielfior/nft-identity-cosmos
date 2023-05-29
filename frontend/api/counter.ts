@@ -9,7 +9,6 @@ export const getCount = async () => {
 };
 
 export const getQueue = async () => {
-  console.log("entered getQueue");
   const client = await getClient();
   return await client.queryContractSmart(getContractAddr(), {
     get_caller_recipient: {},
@@ -31,7 +30,6 @@ export const addRecipientToQueue = async (
   caller: string,
   recipient: string
 ) => {
-  console.log("caller", caller, recipient, "recipient");
   const client = await getSigningClient();
   const sender = await getAddress();
   // return new CounterClient(client,sender,getContractAddr())
