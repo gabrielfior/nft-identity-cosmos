@@ -7,9 +7,9 @@ Cluster 4 post heavily. Those are the "extroverts"
 Cluster 5 comments heavily. Those are users that do not post as much and do not have as much followers. I would label them as "commentors"
 '''
 osmosisProfileType ={
-    0:  "Retail trader",
-    1:  "Power trader",
-    2: "Whale",
+    0:  "Crab",
+    1:  "Whale",
+    2:  "Whale",
     -1: "Unknown"
 }  
 import pandas as pd
@@ -19,7 +19,6 @@ from fastapi import HTTPException
 
 class OsmosisTraderClusterAlgorithm(BaseClusterAlgorithm):
     def get_cluster_index(self, wallet_address: str):
-        
         filepath = pathlib.Path(__file__).parent.parent.joinpath('data','osmosis_clusters_wallet_mapping.csv')
         data_with_clusters = pd.read_csv(filepath)
         found_trader = data_with_clusters.loc[data_with_clusters['TRADER'] == wallet_address].cluster

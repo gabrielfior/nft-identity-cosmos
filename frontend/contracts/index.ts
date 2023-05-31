@@ -6,8 +6,13 @@
 
 import * as _0 from "./Counter.types";
 import * as _1 from "./Counter.client";
+import * as _2 from "./NftGenerator.types";
+import * as _3 from "./NftGenerator.client";
 export namespace contracts {
   export const Counter = { ..._0,
     ..._1
+  };
+  export const NftGenerator = { ..._2,
+    ..._3
   };
 }

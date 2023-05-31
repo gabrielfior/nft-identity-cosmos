@@ -20,3 +20,13 @@ export const getContractAddr = () => {
 
   return contractAddr;
 };
+
+export const getNftContractAddr = () => {
+  const contractAddr = getState()?.["nft-generator"].addresses.default;
+
+  if (!contractAddr) {
+    throw Error("Contract address not found, please check your state file");
+  }
+
+  return contractAddr;
+};
