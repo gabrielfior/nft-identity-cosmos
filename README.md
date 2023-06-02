@@ -1,5 +1,7 @@
 # NFT Identity project for Cosmos
 
+![](./nft_logo.png)
+
 General architecture, based on Delphi's [RFP](https://www.notion.so/5a6c1afdce6646d6b21f1184502ae039).
 
 ![General architecture](https://gateway.pinata.cloud/ipfs/QmPKweKpMmvfo1uKo7EuwJbx4hNpfCZMyuHeoiZgGWf7P3)
